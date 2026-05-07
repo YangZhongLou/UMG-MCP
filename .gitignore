@@ -4,3 +4,6 @@ Intermediate
 .vs
 Binaries
 Saved
+
+# Sensitive files
+personal access token*.txt
