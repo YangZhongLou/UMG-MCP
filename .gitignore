@@ -1,9 +1,27 @@
-DerivedDataCache
-Intermediate
-.idea
-.vs
-Binaries
-Saved
+# Visual Studio
+.vs/
+*.sln
+.vsconfig
+
+# JetBrains
+.idea/
+
+# Unreal Engine generated
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# UE5 content auto-generated
+Content/Developers/
+Content/Collections/
+Content/*_BuiltData.uasset
+
+# Temporary files
+*.tmp
+*.tmp.bin
+*.autosave
 
 # Sensitive files
 personal access token*.txt

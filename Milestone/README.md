@@ -8,7 +8,7 @@
 
 | 阶段 | 主题 | 状态 | 文档 |
 |------|------|------|------|
-| Phase 1 | 基础框架搭建 | 🚧 进行中 | [phase-1.md](./phase-1.md) |
+| Phase 1 | 基础框架搭建 | ✅ 已完成 | [phase-1.md](./phase-1.md) |
 | Phase 2 | MCP 通信层 | 📋 未开始 | [phase-2.md](./phase-2.md) |
 | Phase 3 | 图片解析与识别 | 📋 未开始 | [phase-3.md](./phase-3.md) |
 | Phase 4 | UMG 蓝图生成 | 📋 未开始 | [phase-4.md](./phase-4.md) |
