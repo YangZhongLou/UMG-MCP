@@ -1,0 +1,37 @@
+{
+  "name": "default",
+  "description": "默认浅色风格模板",
+  "colors": {
+    "primary": "#4CAF50",
+    "primary_hover": "#45A049",
+    "secondary": "#2196F3",
+    "background": "#FFFFFF",
+    "surface": "#F5F5F5",
+    "text": "#333333",
+    "text_secondary": "#666666",
+    "border": "#DDDDDD",
+    "error": "#F44336",
+    "success": "#4CAF50"
+  },
+  "fonts": {
+    "default": {
+      "family": "Roboto",
+      "size": 16
+    },
+    "title": {
+      "family": "Roboto",
+      "size": 24,
+      "bold": true
+    },
+    "caption": {
+      "family": "Roboto",
+      "size": 12
+    }
+  },
+  "spacing": {
+    "padding": 8,
+    "margin": 16,
+    "gap": 8,
+    "border_radius": 4
+  }
+}

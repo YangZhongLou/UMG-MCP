@@ -33,6 +33,9 @@
 #include "WidgetBlueprint.h"
 #include "Blueprint/WidgetTree.h"
 
+float FImageToUMGBlueprintGenerator::CanvasWidth = 1920.0f;
+float FImageToUMGBlueprintGenerator::CanvasHeight = 1080.0f;
+
 bool FImageToUMGBlueprintGenerator::GenerateFromJson(const FString& JsonFilePath, FString& OutMessage)
 {
 	// 读取 JSON 文件
@@ -51,6 +54,12 @@ bool FImageToUMGBlueprintGenerator::GenerateFromJson(const FString& JsonFilePath
 		OutMessage = TEXT("JSON 解析失败");
 		return false;
 	}
+
+	// 读取画布尺寸
+	CanvasWidth = 1920.0f;
+	CanvasHeight = 1080.0f;
+	RootObject->TryGetNumberField(TEXT("canvas_width"), CanvasWidth);
+	RootObject->TryGetNumberField(TEXT("canvas_height"), CanvasHeight);
 
 	// 获取输出路径（默认 Content/UI/）
 	FString OutputPath = TEXT("/Game/UI");
@@ -225,9 +234,79 @@ void FImageToUMGBlueprintGenerator::SetupCanvasSlot(UWidget* Widget, const TShar
 	JsonObj->TryGetNumberField(TEXT("width"), Width);
 	JsonObj->TryGetNumberField(TEXT("height"), Height);
 
-	CanvasSlot->SetAnchors(FAnchors(0.0f, 0.0f, 0.0f, 0.0f));
-	CanvasSlot->SetPosition(FVector2D(static_cast<float>(X), static_cast<float>(Y)));
-	CanvasSlot->SetSize(FVector2D(static_cast<float>(Width), static_cast<float>(Height)));
+	float FX = static_cast<float>(X);
+	float FY = static_cast<float>(Y);
+	float FWidth = static_cast<float>(Width);
+	float FHeight = static_cast<float>(Height);
+
+	FAnchors Anchors = InferAnchors(FX, FY, FWidth, FHeight);
+	CanvasSlot->SetAnchors(Anchors);
+	CanvasSlot->SetPosition(FVector2D(FX, FY));
+	CanvasSlot->SetSize(FVector2D(FWidth, FHeight));
+}
+
+FAnchors FImageToUMGBlueprintGenerator::InferAnchors(float X, float Y, float Width, float Height)
+{
+	const float Margin = 20.0f;
+
+	float Left = 0.0f;
+	float Top = 0.0f;
+	float Right = 0.0f;
+	float Bottom = 0.0f;
+
+	// 水平锚点推断
+	if (X <= Margin)
+	{
+		// 靠左
+		Left = 0.0f;
+		Right = 0.0f;
+	}
+	else if (X + Width >= CanvasWidth - Margin)
+	{
+		// 靠右
+		Left = 1.0f;
+		Right = 1.0f;
+	}
+	else if (FMath::Abs(X + Width * 0.5f - CanvasWidth * 0.5f) <= Margin)
+	{
+		// 水平居中
+		Left = 0.5f;
+		Right = 0.5f;
+	}
+	else
+	{
+		// 自由定位
+		Left = 0.0f;
+		Right = 0.0f;
+	}
+
+	// 垂直锚点推断
+	if (Y <= Margin)
+	{
+		// 靠上
+		Top = 0.0f;
+		Bottom = 0.0f;
+	}
+	else if (Y + Height >= CanvasHeight - Margin)
+	{
+		// 靠下
+		Top = 1.0f;
+		Bottom = 1.0f;
+	}
+	else if (FMath::Abs(Y + Height * 0.5f - CanvasHeight * 0.5f) <= Margin)
+	{
+		// 垂直居中
+		Top = 0.5f;
+		Bottom = 0.5f;
+	}
+	else
+	{
+		// 自由定位
+		Top = 0.0f;
+		Bottom = 0.0f;
+	}
+
+	return FAnchors(Left, Top, Right, Bottom);
 }
 
 void FImageToUMGBlueprintGenerator::SetupCommonProperties(UWidget* Widget, const TSharedPtr<FJsonObject>& JsonObj)

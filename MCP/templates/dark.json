@@ -1,0 +1,37 @@
+{
+  "name": "dark",
+  "description": "深色模式风格模板",
+  "colors": {
+    "primary": "#BB86FC",
+    "primary_hover": "#9965F4",
+    "secondary": "#03DAC6",
+    "background": "#121212",
+    "surface": "#1E1E1E",
+    "text": "#E0E0E0",
+    "text_secondary": "#A0A0A0",
+    "border": "#333333",
+    "error": "#CF6679",
+    "success": "#03DAC6"
+  },
+  "fonts": {
+    "default": {
+      "family": "Roboto",
+      "size": 16
+    },
+    "title": {
+      "family": "Roboto",
+      "size": 24,
+      "bold": true
+    },
+    "caption": {
+      "family": "Roboto",
+      "size": 12
+    }
+  },
+  "spacing": {
+    "padding": 12,
+    "margin": 16,
+    "gap": 8,
+    "border_radius": 8
+  }
+}

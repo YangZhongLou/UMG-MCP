@@ -12,7 +12,7 @@
 | Phase 2 | MCP 通信层 | ✅ 已完成 | [phase-2.md](./phase-2.md) |
 | Phase 3 | 图片解析与识别 | ✅ 已完成 | [phase-3.md](./phase-3.md) |
 | Phase 4 | UMG 蓝图生成 | ✅ 已完成 | [phase-4.md](./phase-4.md) |
-| Phase 5 | 样式映射与微调 | 📋 未开始 | [phase-5.md](./phase-5.md) |
+| Phase 5 | 样式映射与微调 | ✅ 已完成 | [phase-5.md](./phase-5.md) |
 | Phase 6 | 完善与发布 | 📋 未开始 | [phase-6.md](./phase-6.md) |
 | 长期展望 | — | 📋 未开始 | [long-term.md](./long-term.md) |
 

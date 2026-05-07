@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Widgets/Layout/Anchors.h"
 
 class UWidget;
 class UWidgetTree;
@@ -15,11 +16,18 @@ public:
 	static bool GenerateFromJson(const FString& JsonFilePath, FString& OutMessage);
 
 private:
+	/** 画布尺寸，用于锚点推断 */
+	static float CanvasWidth;
+	static float CanvasHeight;
+
 	/** 递归创建控件 */
 	static UWidget* CreateWidgetRecursive(UWidgetTree* WidgetTree, const TSharedPtr<FJsonObject>& JsonObj, UWidget* Parent);
 
 	/** 为 CanvasPanel 子控件设置 Slot */
 	static void SetupCanvasSlot(UWidget* Widget, const TSharedPtr<FJsonObject>& JsonObj);
+
+	/** 推断并设置锚点 */
+	static FAnchors InferAnchors(float X, float Y, float Width, float Height);
 
 	/** 设置通用属性（文本、颜色等） */
 	static void SetupCommonProperties(UWidget* Widget, const TSharedPtr<FJsonObject>& JsonObj);
