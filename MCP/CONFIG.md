@@ -74,5 +74,5 @@ uv run python main.py
 | 工具名 | 功能 | 状态 |
 |--------|------|------|
 | `analyze_image` | 分析 UI 设计图，调用 Kimi 多模态 LLM 识别控件结构 | ✅ 可用（需 API Key） |
-| `generate_umg` | 根据分析结果生成 UMG 蓝图 | 🚧 Phase 4 实现 |
+| `generate_umg` | 根据分析结果生成 UMG 蓝图（通过文件触发 UE5 Editor） | ✅ 可用 |
 | `list_supported_widgets` | 列出支持的控件类型 | ✅ 可用 |

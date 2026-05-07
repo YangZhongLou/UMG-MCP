@@ -6,10 +6,10 @@
 
 ## 任务清单
 
-- [ ] 开发 UMG Widget 蓝图创建工具
-- [ ] 还原控件层级嵌套结构
-- [ ] 自动设置控件基础属性（位置、大小、锚点）
-- [ ] 支持常用控件（Text、Image、Button、CanvasPanel 等）
+- [x] 开发 UMG Widget 蓝图创建工具
+- [x] 还原控件层级嵌套结构
+- [x] 自动设置控件基础属性（位置、大小、锚点）
+- [x] 支持常用控件（Text、Image、Button、CanvasPanel 等）
 
 ---
 

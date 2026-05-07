@@ -24,6 +24,10 @@ public class ImageToUMGEditor : ModuleRules
 			"BlueprintGraph",
 			"Kismet",
 			"KismetCompiler",
+			"Json",
+			"JsonUtilities",
+			"AssetTools",
+			"AssetRegistry",
 			"ImageToUMG"
 		});
 
@@ -33,7 +37,8 @@ public class ImageToUMGEditor : ModuleRules
 			"WorkspaceMenuStructure",
 			"LevelEditor",
 			"InteractiveToolsFramework",
-			"EditorInteractiveToolsFramework"
+			"EditorInteractiveToolsFramework",
+			"UMGEditor"
 		});
 	}
 }

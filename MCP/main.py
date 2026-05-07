@@ -212,27 +212,69 @@ async def analyze_image(image_path: str) -> str:
 async def generate_umg(analysis_json: str, output_path: str = "") -> str:
     """根据 analyze_image 的输出生成 UE5 UMG Widget 蓝图。
 
+    工作原理：
+    1. 将 analysis_json 写入项目 Content 目录的临时 JSON 文件
+    2. 写入 trigger 文件通知 UE5 Editor 执行生成
+    3. UE5 Editor 检测到 trigger 后自动创建并保存 Widget Blueprint
+
     Args:
         analysis_json: analyze_image 返回的 JSON 字符串
-        output_path: 蓝图输出目录（可选，默认为项目 Content/UI 目录）
+        output_path: 蓝图输出路径（可选，如 /Game/UI）
 
     Returns:
-        生成结果描述
+        生成请求状态描述
     """
     try:
         analysis = json.loads(analysis_json)
     except json.JSONDecodeError as e:
-        return f"解析 analysis_json 失败: {e}"
+        return json.dumps(
+            {"status": "error", "message": f"解析 analysis_json 失败: {e}"},
+            ensure_ascii=False,
+        )
 
     if analysis.get("status") != "success":
-        return f"分析结果状态异常: {analysis.get('message', 'unknown')}"
+        return json.dumps(
+            {
+                "status": "error",
+                "message": f"分析结果状态异常: {analysis.get('message', 'unknown')}",
+            },
+            ensure_ascii=False,
+        )
 
-    # TODO: Phase 4 调用 UE5 Editor 模块生成蓝图
+    # 计算项目路径
+    mcp_dir = Path(__file__).parent.resolve()
+    project_root = mcp_dir.parent
+    content_dir = project_root / "ImageToUMG" / "Content"
+    content_dir.mkdir(parents=True, exist_ok=True)
+
+    json_file = content_dir / "ImageToUMG_WidgetGen.json"
+    trigger_file = content_dir / "ImageToUMG_Trigger.tmp"
+
+    # 补充输出路径和蓝图名称到 JSON
+    analysis["output_path"] = output_path or "/Game/UI"
+    if "blueprint_name" not in analysis:
+        analysis["blueprint_name"] = "BP_GeneratedWidget"
+
+    try:
+        with json_file.open("w", encoding="utf-8") as f:
+            json.dump(analysis, f, ensure_ascii=False, indent=2)
+
+        # 写入 trigger 文件通知 UE5 Editor
+        trigger_file.write_text("", encoding="utf-8")
+    except Exception as e:
+        return json.dumps(
+            {"status": "error", "message": f"写入文件失败: {e}"},
+            ensure_ascii=False,
+        )
+
     result: dict[str, Any] = {
-        "status": "not_implemented",
-        "message": "UMG 蓝图生成功能将在 Phase 4 实现，目前可查看 analysis_json 中的控件结构",
+        "status": "queued",
+        "message": "生成请求已提交到 UE5 Editor，请确保编辑器处于打开状态",
+        "json_file": str(json_file),
+        "trigger_file": str(trigger_file),
         "widgets_count": _count_widgets(analysis.get("widgets", [])),
-        "output_path": output_path or "Content/UI/",
+        "output_path": analysis["output_path"],
+        "blueprint_name": analysis["blueprint_name"],
     }
     return json.dumps(result, ensure_ascii=False, indent=2)
 
