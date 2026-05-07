@@ -72,7 +72,7 @@ UMG-MCP/
 
 ## 开发计划
 
-详见 [ROADMAP.md](./ROADMAP.md)。
+详见 [Milestone](./Milestone/) 目录。
 
 ---
 
