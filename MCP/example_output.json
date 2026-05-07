@@ -1,0 +1,88 @@
+{
+  "status": "success",
+  "message": "图像分析完成",
+  "template_used": "default",
+  "canvas_width": 1920,
+  "canvas_height": 1080,
+  "widgets": [
+    {
+      "type": "CanvasPanel",
+      "name": "RootCanvas",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "text": "",
+      "style": {},
+      "children": [
+        {
+          "type": "Image",
+          "name": "BgImage",
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "text": "",
+          "style": {"background_color": "#1A1A2E"},
+          "children": []
+        },
+        {
+          "type": "VerticalBox",
+          "name": "MainMenu",
+          "x": 760,
+          "y": 340,
+          "width": 400,
+          "height": 400,
+          "text": "",
+          "style": {},
+          "children": [
+            {
+              "type": "TextBlock",
+              "name": "TitleText",
+              "x": 0,
+              "y": 0,
+              "width": 400,
+              "height": 80,
+              "text": "游戏标题",
+              "style": {"font_size": 48, "text_color": "#FFFFFF"},
+              "children": []
+            },
+            {
+              "type": "Button",
+              "name": "BtnStart",
+              "x": 0,
+              "y": 120,
+              "width": 400,
+              "height": 60,
+              "text": "开始游戏",
+              "style": {"background_color": "#4CAF50", "font_size": 24, "text_color": "#FFFFFF"},
+              "children": []
+            },
+            {
+              "type": "Button",
+              "name": "BtnSettings",
+              "x": 0,
+              "y": 200,
+              "width": 400,
+              "height": 60,
+              "text": "设置",
+              "style": {"background_color": "#2196F3", "font_size": 24, "text_color": "#FFFFFF"},
+              "children": []
+            },
+            {
+              "type": "Button",
+              "name": "BtnQuit",
+              "x": 0,
+              "y": 280,
+              "width": 400,
+              "height": 60,
+              "text": "退出",
+              "style": {"background_color": "#F44336", "font_size": 24, "text_color": "#FFFFFF"},
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
