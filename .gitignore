@@ -23,5 +23,13 @@ Content/*_BuiltData.uasset
 *.tmp.bin
 *.autosave
 
+# Python / MCP Server temp files
+__pycache__/
+*.pyc
+*.pyo
+MCP/.venv/
+MCP/uv.lock
+MCP/.python-version
+
 # Sensitive files
 personal access token*.txt
